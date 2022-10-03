@@ -17,6 +17,10 @@ class TestBase(unittest.TestCase):
         b = Base()
         self.assertEqual(b.id, 1)
 
+    def test_float(self):
+        "Test of Base for input float"
+        b = Base(9.5)
+        self.assertEqual(b.id, 9.5)
 
 if __name__ == "__main__":
     unittest.main()
