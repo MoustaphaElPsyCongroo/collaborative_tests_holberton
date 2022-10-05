@@ -71,6 +71,12 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(4, 6, 2, 1, 12)
         self.assertEqual(str(r), "[Rectangle] (12) 2/1 - 4/6")
 
+    def test_dictionary(self):
+        s1 = Rectangle(10, 2, 1, 9)
+        s1_dict = s1.to_dictionary()
+        self.assertEqual(s1_dict, {'x': 1, 'y': 9, 'id': 9,
+                                   'height': 2, 'width': 10})
+
 
 if __name__ == "__main__":
     unittest.main()
