@@ -10,16 +10,37 @@ class TestSquare(unittest.TestCase):
     """Testing Square"""
 
     def test_instance(self):
-        """test input size correct standard """
-        s = Square(5)
-        self.assertEqual(s.size, 5)
+      """test input size correct standard """
+      
+      s = Square(5)
+      self.assertEqual(s.width, 5)
+      self.assertEqual(s.height, 5)
 
-        with self.assertRaises(TypeError):
-            s = Square(5, "1")
-            s = Square("1")
 
-        with self.assertRaises(ValueError):
-            s = Square(-5, 3, 4)
+      with self.assertRaises(TypeError):
+          Square(5, "1")
+
+      with self.assertRaises(TypeError):
+           Square()
+
+      with self.assertRaises(TypeError):
+           Square("1")
+
+      with self.assertRaises(ValueError):
+           Square(-5, 3, 4)
+
+      with self.assertRaises(TypeError):
+           Square(1, 2, "3")
+
+      with self.assertRaises(ValueError):
+           Square(1, -2)
+
+      with self.assertRaises(ValueError):
+           Square(1, 2, -3)
+
+      with self.assertRaises(ValueError):
+           Square(0)
+
 
     def test_area(self):
         """testing area"""
