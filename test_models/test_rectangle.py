@@ -72,10 +72,53 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(str(r), "[Rectangle] (12) 2/1 - 4/6")
 
     def test_dictionary(self):
+        "Tests to_dictionary() method"
         s1 = Rectangle(10, 2, 1, 9)
         s1_dict = s1.to_dictionary()
         self.assertEqual(s1_dict, {'x': 1, 'y': 9, 'id': 9,
                                    'height': 2, 'width': 10})
+
+    def test_update(self):
+        "Tests if Rectangle's update() exists and updates the right args"
+        r = Rectangle(10, 20, 30, 40, 50)
+        r.update(89, 1, 2, 3, 4)
+        self.assertEqual(r.id, 89)
+        self.assertEqual(r.width, 1)
+        self.assertEqual(r.height, 2)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
+
+    def test_create(self):
+        """tests create"""
+        to_test = Rectangle.create(**{'id': 89, 'width': 1,
+                                      'height': 2, 'x': 3})
+        answer = Rectangle(1, 2, 3, 0, 89)
+        self.assertEqual(str(to_test), str(answer))
+
+        to_test = Rectangle.create(**{'id': 89, 'width': 1,
+                                      'height': 2, 'x': 3, 'y': 4})
+        answer = Rectangle(1, 2, 3, 4, 89)
+        self.assertEqual(str(to_test), str(answer))
+
+        to_test = Rectangle.create(
+            **{'id': 89, 'width': 1, 'height': 2, 'x': 3})
+        answer = Rectangle(1, 2, 3, 0, 89)
+        self.assertEqual(str(to_test), str(answer))
+
+        to_test = Rectangle.create(**{'id': 89, 'width': 1, 'height': 2})
+        answer = Rectangle(1, 2, 0, 0, 89)
+        self.assertEqual(str(to_test), str(answer))
+
+        to_test = Rectangle.create(**{'id': 89, 'width': 1})
+        self.assertEqual(to_test.id, 89)
+        self.assertEqual(to_test.width, 1)
+        self.assertEqual(to_test.x, 0)
+        self.assertEqual(to_test.y, 0)
+
+        to_test = Rectangle.create(**{'id': 89})
+        self.assertEqual(to_test.id, 89)
+        self.assertEqual(to_test.x, 0)
+        self.assertEqual(to_test.y, 0)
 
 
 if __name__ == "__main__":
