@@ -43,7 +43,7 @@ class TestBase(unittest.TestCase):
         self.assertEqual(err, str(i.exception))
 
     def test_from_json_string(self):
-        """ Test from_json_string - check json string return to list """
+        """ Tests from_json_string - check json string return to list """
         string = '[{"id": 1, "x": 2, "y": 3, "width": 4, "height": 5}]'
         json_str = Base.from_json_string(string)
         self.assertTrue(isinstance(string, str))

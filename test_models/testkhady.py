@@ -3,6 +3,8 @@
 import unittest
 from unittest import mock
 import io
+from models.rectangle import Rectangle
+from models.base import Base
 
 
 
