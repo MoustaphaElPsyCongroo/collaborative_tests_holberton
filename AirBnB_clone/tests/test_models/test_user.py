@@ -30,3 +30,17 @@ class UserCase(unittest.TestCase):
         self.assertTrue(hasattr(self.user, 'id'))
         self.assertTrue(hasattr(self.user, 'created_at'))
         self.assertTrue(hasattr(self.user, 'updated_at'))
+
+    def test_types(self):
+        """tests if the type of the attribute is the correct one"""
+        self.assertIsInstance(self.user.email, str)
+        self.assertIsInstance(self.user.password, str)
+        self.assertIsInstance(self.user.first_name, str)
+        self.assertIsInstance(self.user.last_name, str)
+        self.assertIsInstance(self.user.id, str)
+        self.assertIsInstance(self.user.created_at, datetime.datetime)
+        self.assertIsInstance(self.user.updated_at, datetime.datetime)
+
+
+if __name__ == '__main__':
+    unittest.main()
