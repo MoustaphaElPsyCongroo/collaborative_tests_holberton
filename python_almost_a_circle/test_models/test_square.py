@@ -37,6 +37,9 @@ class TestSquare(unittest.TestCase):
         with self.assertRaises(ValueError):
             Square(1, 2, -3)
 
+        with self.assertRaises(ValueError):
+            Square(0)
+
     def test_case_normal(self):
         """Test of Square(1, 2, 3, 4) exists"""
         s = Square(1, 2, 3, 4)
@@ -103,6 +106,52 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s.x, 2)
         self.assertEqual(s.y, 3)
 
+<<<<<<< HEAD:test_models/test_square.py
+=======
+    def test_to_dictionary(self):
+        """
+        Test of to_dictionary() in Square exists
+        """
+        dict = {'id': 7, 'size': 10, 'x': 9, 'y': 8}
+        s = Square(10, 9, 8, 7)
+        self.assertEqual(dict, s.to_dictionary())
+
+    def test_save_to_file_none(self):
+        """Test that `save_to_file()` instance used to directly
+        serialize and write to file and delete the file
+        """
+        Base._Base__nb_object = 0
+        s1 = Square(9, 2, 7)
+        s2 = Square(2)
+        Square.save_to_file(None)
+        self.assertIs(os.path.exists("Square.json"), True)
+        with open("Square.json", 'r') as file:
+            self.assertEqual(json.loads(file.read()), json.loads('[]'))
+        os.remove("Square.json")
+
+    def test_load_from_file(self):
+        """Test of Square.load_from_file(None) in Square exists"""
+        Square.save_to_file(None)
+        self.assertTrue(os.path.isfile('Square.json'))
+
+        load_file = Square.load_from_file()
+        self.assertEqual(len(load_file), 0)
+
+    def test_save_to_file(self):
+        """Test of Square.save_to_file([Square(1)]) in Square exists"""
+        Square.save_to_file([Square(1)])
+        with open("Square.json", mode="r") as read_file:
+            s = read_file.read()
+            self.assertEqual(len(s), 39)
+
+    def test_save_to_file_list_empty(self):
+        """Test of Square.save_to_file([]) in Square exists"""
+        Square.save_to_file([])
+        with open("Square.json", mode="r") as read_file:
+            s = read_file.read()
+            self.assertEqual(s, "[]")
+
+>>>>>>> da0eb76fb384b92ab8b98f977e4bccebfd52225b:python_almost_a_circle/test_models/test_square.py
 
 if __name__ == "__main__":
     unittest.main()
